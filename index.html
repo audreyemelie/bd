@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Aunty Joke Birthday</title>
+    <style>
+      :root {
+        --bg-color: #0f0f13;
+        --card-bg: #1a1a24;
+        --pink-primary: #ff4081;
+        --pink-light: #ff80ab;
+        --pink-glow: rgba(255, 64, 129, 0.3);
+        --text-color: #ffffff;
+        --text-muted: #b0b0c0;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        overflow-x: hidden;
+        animation: shimmerBG 14s ease infinite;
+      }
+
+      .main-container {
+        width: 100%;
+        max-width: 950px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+      }
+
+      .card {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.5),
+          0 0 20px var(--pink-glow);
+        border: 2px solid var(--pink-primary);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+      }
+
+      h1 {
+        color: var(--pink-primary);
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        margin-bottom: 10px;
+        text-shadow: 0 0 15px var(--pink-glow);
+      }
+
+      h2 {
+        color: var(--pink-light);
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        font-weight: 400;
+        margin-bottom: 25px;
+      }
+
+      /* Countdown Grid Styles */
+      .countdown-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .time-box {
+        background: #252535;
+        padding: 15px 10px;
+        border-radius: 12px;
+        border: 1px solid var(--pink-light);
+      }
+
+      .time-box span {
+        display: block;
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        font-weight: bold;
+        color: var(--pink-primary);
+      }
+
+      .time-box label {
+        font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      @keyframes shimmerBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Floating Animation Layer */
+      #particle-layer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      .particle {
+        position: absolute;
+        top: -40px;
+        animation: floatDown linear infinite;
+        opacity: 0.85;
+        user-select: none;
+      }
+
+      @keyframes floatDown {
+        0% {
+          transform: translateY(0) rotate(0deg) scale(0.8);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(50vh) rotate(180deg) scale(1.2);
+        }
+        100% {
+          transform: translateY(105vh) rotate(360deg) scale(0.8);
+          opacity: 0.1;
+        }
+      }
+
+      /* Decorative 6-Image Gallery Styles */
+      .photo-gallery-section h3 {
+        color: var(--pink-primary);
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+      }
+
+      .photo-grid-6 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .photo-box {
+        border-radius: 15px;
+        padding: 12px;
+        border: 2px dashed var(--pink-light);
+        box-shadow: 0 0 15px rgba(255, 64, 129, 0.15);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .photo-box:hover {
+        transform: scale(1.03);
+        border-color: var(--pink-primary);
+        box-shadow: 0 0 25px var(--pink-glow);
+      }
+
+      .image-frame {
+        width: 100%;
+        height: 200px;
+        background: #121216;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        border: 1px solid rgba(255, 128, 171, 0.2);
+        overflow: hidden;
+      }
+
+      /* Use this img tag style when adding actual images */
+      .image-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .photo-caption {
+        color: var(--pink-light);
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      /* Aunty Joke Section Specifics */
+      .aunty-section {
+        border-color: var(--pink-light);
+        background: linear-gradient(135deg, #1a1a24 0%, #2a1b2d 100%);
+      }
+
+      .aunty-section h3 {
+        color: var(--pink-primary);
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+      }
+
+      .aunty-section p {
+        color: var(--text-muted);
+        line-height: 1.6;
+        font-size: 1.05rem;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      /* Prayers Section (50 Prayers) */
+      .prayers-section {
+        background: linear-gradient(135deg, #1f1a24 0%, #1a1a24 100%);
+      }
+
+      .prayers-section h3 {
+        color: var(--pink-primary);
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+      }
+
+      .prayers-scroll {
+        max-height: 350px;
+        overflow-y: auto;
+        padding-right: 10px;
+        margin-top: 15px;
+      }
+
+      .prayers-scroll::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .prayers-scroll::-webkit-scrollbar-thumb {
+        background: var(--pink-primary);
+        border-radius: 10px;
+      }
+
+      .prayers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 12px;
+        text-align: left;
+      }
+
+      .prayer-card {
+        background: #252535;
+        padding: 12px 16px;
+        border-radius: 10px;
+        border-left: 4px solid var(--pink-primary);
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+      }
+
+      /* Confetti & Sparkling Animation Styles */
+      @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 0.2;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+          text-shadow: 0 0 10px var(--pink-primary);
+        }
+      }
+
+      .birthday-heading {
+        animation: sparkle 1.5s infinite ease-in-out;
+      }
+
+      /* Music Generator Section */
+      .song-section {
+        text-align: center;
+        margin: 20px auto;
+      }
+
+      .btn-play {
+        background: linear-gradient(135deg, #ff9ff3, #feca57, #ff6b6b);
+        background-size: 200% 200%;
+        border: none;
+        padding: 15px 35px;
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: #2d3436;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow:
+          0 10px 25px rgba(0, 0, 0, 0.25),
+          0 0 20px rgba(255, 255, 255, 0.4);
+        transition: all 0.3s ease;
+      }
+
+      .btn-play:hover {
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 600px) {
+        .countdown-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .card {
+          padding: 20px 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Floating Hearts & Particles Container -->
+    <div id="particle-layer"></div>
+
+    <div class="main-container">
+      <!-- Mimi's Main Birthday & Achievement Card -->
+      <div class="card">
+        <h1 class="birthday-heading">
+          🎉 Happy Birthday to <strong>AUNTY JOKE</strong>! 🌸
+        </h1>
+        <h2>Celebrating 40 Years of Life, Love, and Achievements! 🎉</h2>
+
+        <!-- Happy Birthday Song Generator -->
+        <section class="song-section">
+          <button class="btn-play" onclick="playBirthdaySong()">
+            🎶 Play Happy Birthday Song! 🎵
+          </button>
+        </section>
+
+        <div class="countdown-grid" id="countdown">
+          <div class="time-box">
+            <span id="days">00</span>
+            <label>Days</label>
+          </div>
+          <div class="time-box">
+            <span id="hours">00</span>
+            <label>Hours</label>
+          </div>
+          <div class="time-box">
+            <span id="minutes">00</span>
+            <label>Minutes</label>
+          </div>
+          <div class="time-box">
+            <span id="seconds">00</span>
+            <label>Seconds</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: Decorative 6-Image Memory Gallery Box -->
+      <div class="card photo-gallery-section">
+        <h3>💖 Precious Memories Gallery 💖</h3>
+        <p
+          style="
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+          "
+        >
+          A decorative showcase for your favorite cherished moments!
+        </p>
+
+        <div class="photo-grid-6">
+          <!-- Image Box 1 -->
+          <div class="photo-box">
+            <div class="image-frame">
+              <img
+                style="width: 100%; height: 100%"
+                src="https://mail.google.com/mail/u/0?ui=2&ik=010de119a5&attid=0.1&permmsgid=msg-f:1872150876634718119&th=19fb374d9fbf9fa7&view=att&disp=safe&realattid=19fb37498e648890c071&zw"
+                alt=""
+              />
+            </div>
+
+            <div class="photo-caption">✨ Memory One</div>
+          </div>
+
+          <!-- Image Box 2 -->
+          <div class="photo-box">
+            <div class="image-frame">
+              <img
+                style="width: 100%; height: 100%"
+                src="https://mail.google.com/mail/u/0?ui=2&ik=010de119a5&attid=0.1&permmsgid=msg-f:1872150963670544646&th=19fb3761e37cf106&view=att&disp=safe&realattid=19fb375dc971ee1efdf1&zw"
+                alt=""
+              />
+            </div>
+
+            <div class="photo-caption">💖 Memory Two</div>
+          </div>
+
+          <!-- Image Box 3 -->
+          <div class="photo-box">
+            <div class="image-frame">
+              <img
+                style="width: 100%; height: 100%"
+                src="https://mail.google.com/mail/u/0?ui=2&ik=010de119a5&attid=0.1&permmsgid=msg-f:1872150685319809622&th=19fb3721147dca56&view=att&disp=safe&realattid=19fb371cd906ae975b51&zw"
+                alt=""
+              />
+            </div>
+            <div class="photo-caption">🌸 Memory Three</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 50 Powerful Prayers & Blessings Section -->
+      <div class="card prayers-section">
+        <h3>
+          🙏 50 Powerful Prayers & Blessings for <strong>AUNTY JOKE</strong> 🙏
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem">
+          Laying down 50 powerful declarations for you!
+        </p>
+
+        <div class="prayers-scroll">
+          <div class="prayers-grid">
+            <div class="prayer-card">
+              1. May God's infinite grace guide your steps into your new season.
+            </div>
+            <div class="prayer-card">
+              2. May your brilliant mind continue to break records.
+            </div>
+            <div class="prayer-card">
+              3. May divine protection and peace surround you every single day.
+            </div>
+            <div class="prayer-card">
+              4. May every venture of your hands blossom into immense success.
+            </div>
+            <div class="prayer-card">
+              5. May you grow in wisdom, stature, and favor before God and man.
+            </div>
+            <div class="prayer-card">
+              6. May this year unlock unprecedented doors of global
+              opportunities.
+            </div>
+            <div class="prayer-card">
+              7. May joy and laughter never cease in your home.
+            </div>
+            <div class="prayer-card">
+              8. May you remain the head and never the tail.
+            </div>
+            <div class="prayer-card">
+              9. May heavenly strength empower you through every challenge.
+            </div>
+            <div class="prayer-card">
+              10. May divine wisdom distinguish you among your peers.
+            </div>
+            <div class="prayer-card">
+              11. May your future be bright, prosperous, and secure.
+            </div>
+            <div class="prayer-card">
+              12. May you be a source of unending pride to your family.
+            </div>
+            <div class="prayer-card">
+              13. May favor speak for you wherever you go.
+            </div>
+            <div class="prayer-card">
+              14. May your creative talents multiply overflowingly.
+            </div>
+            <div class="prayer-card">
+              15. May absolute peace guard your heart and mind.
+            </div>
+            <div class="prayer-card">
+              16. May your hands be blessed to create wonderful innovations.
+            </div>
+            <div class="prayer-card">
+              17. May you always be surrounded by true, uplifting friends.
+            </div>
+            <div class="prayer-card">
+              18. May every stumbling block turn into a stepping stone to
+              greatness.
+            </div>
+            <div class="prayer-card">
+              19. May your confidence soar high as you embrace new heights.
+            </div>
+            <div class="prayer-card">
+              20. May God grant the desires of your heart according to His will.
+            </div>
+            <div class="prayer-card">
+              21. May you walk in divine health and vitality all year round.
+            </div>
+            <div class="prayer-card">
+              22. May your light shine so bright that others are inspired.
+            </div>
+            <div class="prayer-card">
+              23. May your understanding of life's mysteries deepen
+              effortlessly.
+            </div>
+            <div class="prayer-card">
+              24. May goodness and mercy follow you all the days of your life.
+            </div>
+            <div class="prayer-card">
+              25. May your dreams at night translate into brilliant daytime
+              breakthroughs.
+            </div>
+            <div class="prayer-card">
+              26. May you experience uncommon breakthroughs in all your
+              endeavors.
+            </div>
+            <div class="prayer-card">
+              27. May your tongue speak words of life, healing, and positivity.
+            </div>
+            <div class="prayer-card">
+              28. May every plan of the enemy concerning you be utterly
+              frustrated.
+            </div>
+            <div class="prayer-card">
+              29. May your life be a continuous testimony of God's grace.
+            </div>
+            <div class="prayer-card">
+              30. May this milestone mark the beginning of your greatest decade
+              yet!
+            </div>
+            <div class="prayer-card">
+              31. May doors of uncommon distinction open for you effortlessly.
+            </div>
+            <div class="prayer-card">
+              32. May your heart be filled with deep contentment and heavenly
+              joy.
+            </div>
+            <div class="prayer-card">
+              33. May God's angels encamp around you and your loved ones
+              continuously.
+            </div>
+            <div class="prayer-card">
+              34. May your analytical and problem-solving skills shine bright.
+            </div>
+            <div class="prayer-card">
+              35. May every step you take lead you closer to your ultimate
+              purpose.
+            </div>
+            <div class="prayer-card">
+              36. May you find favour in the eyes of everyone around you.
+            </div>
+            <div class="prayer-card">
+              37. May your communication skills inspire and influence
+              positively.
+            </div>
+            <div class="prayer-card">
+              38. May unexpected blessings find you even when you least expect
+              them.
+            </div>
+            <div class="prayer-card">
+              39. May your passion for excellence grow deeper with each passing
+              day.
+            </div>
+            <div class="prayer-card">
+              40. May your character reflect integrity, kindness, and strong
+              values.
+            </div>
+            <div class="prayer-card">
+              41. May financial abundance and stability flow into your
+              household.
+            </div>
+            <div class="prayer-card">
+              42. May you conquer every fear with unwavering faith and courage.
+            </div>
+            <div class="prayer-card">
+              43. May your works and efforts impact lives globally.
+            </div>
+            <div class="prayer-card">
+              44. May you be a beacon of hope and a pillar of strength to
+              others.
+            </div>
+            <div class="prayer-card">
+              45. May your creative imagination bring forth brilliant
+              achievements.
+            </div>
+            <div class="prayer-card">
+              46. May every negative word spoken against you be nullified by
+              fire.
+            </div>
+            <div class="prayer-card">
+              47. May you experience supernatural ease in all your tasks.
+            </div>
+            <div class="prayer-card">
+              48. May your home remain a haven of peace, love, and divine
+              presence.
+            </div>
+            <div class="prayer-card">
+              49. May the Lord crown all your humble efforts with massive
+              success.
+            </div>
+            <div class="prayer-card">
+              50. May your entire life bring eternal glory to God Almighty!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dedicated Section for Aunty Joke -->
+      <div class="card aunty-section">
+        <h3>💖 Special Happy Birthday Tribute to Aunty Joke 💖</h3>
+        <p>
+          A massive, heartfelt celebration goes out to the incredible
+          <strong>Aunty Joke</strong>! Your guidance, warmth, and constant love
+          light up the world around you. Thank you for being such an inspiring
+          presence, bringing joy, wisdom, and endless happiness to everyone you
+          care for. This space is dedicated to celebrating your wonderful heart!
+          <strong>Happy Birthday, Aunty Joke!</strong>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // 1. Floating Particles & Hearts Generator
+      const particleLayer = document.getElementById("particle-layer");
+      const particles = [
+        "💖",
+        "✨",
+        "💕",
+        "⭐",
+        "🌸",
+        "🌟",
+        "💖",
+        "✨",
+        "🥰",
+        "💕",
+        "⭐",
+        "😍",
+      ];
+
+      function spawnParticle() {
+        const el = document.createElement("div");
+        el.classList.add("particle");
+        el.innerText = particles[Math.floor(Math.random() * particles.length)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = Math.random() * 3 + 4.5 + "s";
+        el.style.fontSize = Math.random() * 16 + 14 + "px";
+
+        particleLayer.appendChild(el);
+
+        setTimeout(() => {
+          el.remove();
+        }, 7500);
+      }
+
+      // Spawn particles continuously
+      setInterval(spawnParticle, 400);
+
+      // Set target date for August 1st, 2026
+      const birthdayDate = new Date("August 1, 2026 00:00:00").getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const gap = birthdayDate - now;
+
+        if (gap < 0) {
+          document.getElementById("countdown").innerHTML =
+            "<h2 style='grid-column: span 4; color: var(--pink-primary);'>It's August 1st! Happy Birthday! 🎉</h2>";
+          return;
+        }
+
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+
+        const d = Math.floor(gap / day);
+        const h = Math.floor((gap % day) / hour);
+        const m = Math.floor((gap % hour) / minute);
+        const s = Math.floor((gap % minute) / second);
+
+        document.getElementById("days").innerText = String(d).padStart(2, "0");
+        document.getElementById("hours").innerText = String(h).padStart(2, "0");
+        document.getElementById("minutes").innerText = String(m).padStart(
+          2,
+          "0",
+        );
+        document.getElementById("seconds").innerText = String(s).padStart(
+          2,
+          "0",
+        );
+      }
+
+      // 2. Synthesized Happy Birthday Tune (Web Audio API)
+      function playBirthdaySong() {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+
+        const ctx = new AudioCtx();
+
+        const notes = [
+          { note: 261.63, duration: 0.35 }, // C4
+          { note: 261.63, duration: 0.35 }, // C4
+          { note: 293.66, duration: 0.7 }, // D4
+          { note: 261.63, duration: 0.7 }, // C4
+          { note: 349.23, duration: 0.7 }, // F4
+          { note: 329.63, duration: 1.1 }, // E4
+
+          { note: 261.63, duration: 0.35 }, // C4
+          { note: 261.63, duration: 0.35 }, // C4
+          { note: 293.66, duration: 0.7 }, // D4
+          { note: 261.63, duration: 0.7 }, // C4
+          { note: 392.0, duration: 0.7 }, // G4
+          { note: 349.23, duration: 1.1 }, // F4
+
+          { note: 261.63, duration: 0.35 }, // C4
+          { note: 261.63, duration: 0.35 }, // C4
+          { note: 523.25, duration: 0.7 }, // C5
+          { note: 440.0, duration: 0.7 }, // A4
+          { note: 349.23, duration: 0.7 }, // F4
+          { note: 329.63, duration: 0.7 }, // E4
+          { note: 293.66, duration: 0.7 }, // D4
+
+          { note: 466.16, duration: 0.35 }, // A#4
+          { note: 466.16, duration: 0.35 }, // A#4
+          { note: 440.0, duration: 0.7 }, // A4
+          { note: 349.23, duration: 0.7 }, // F4
+          { note: 392.0, duration: 0.7 }, // G4
+          { note: 349.23, duration: 1.1 }, // F4
+        ];
+
+        let time = ctx.currentTime;
+
+        notes.forEach((item) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(item.note, time);
+
+          gain.gain.setValueAtTime(0.25, time);
+          gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            time + item.duration - 0.04,
+          );
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+
+          osc.start(time);
+          osc.stop(time + item.duration);
+
+          time += item.duration;
+        });
+      }
+
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+    </script>
+  </body>
+</html>
